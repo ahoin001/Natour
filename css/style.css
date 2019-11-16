@@ -72,14 +72,17 @@ body {
   position: absolute;
   top: 40%;
   left: 50%;
-
   /* TODO To Move element, position absolute moves left of div to postion, we move another half to finish centering */
   transform: translate(-50%, -50%);
+
+  text-align: center;
 }
 
 .heading-primary {
   color: #fff;
   text-transform: uppercase;
+
+  margin-bottom: 60px;
 
   /* TODO Fix for animations that cause parent to "shake" */
   backface-visibility: hidden;
@@ -90,7 +93,6 @@ body {
   font-size: 60px;
   font-weight: 400;
   letter-spacing: 35px;
-
 
   animation-name: moveInLeft;
   animation-duration: 1s;
@@ -117,8 +119,8 @@ body {
   }
 
   80% {
-      /* Move alittle far right */
-      transform: translateX(20px);
+    /* Move alittle far right */
+    transform: translateX(20px);
   }
 
   100% {
@@ -135,8 +137,8 @@ body {
   }
 
   80% {
-      /* Move alittle far right */
-      transform: translateX(-20px);
+    /* Move alittle far right */
+    transform: translateX(-20px);
   }
 
   100% {
@@ -144,4 +146,115 @@ body {
     /* Return to  Original position */
     transform: translateX(0);
   }
+}
+
+/* Link is psuedo for links that have not been visited yet */
+/* Visited is visited */
+.btn:link,
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+
+  padding: 15px 40px;
+
+  border-radius: 100px;
+
+  position: relative;
+
+  /* All above properties are animateable because of 'all', and will take .2 seconds 
+    This includes the transforming animations, so now our click and hover are a smooth .2s
+  */
+
+  transition: all 0.2s;
+
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    /* Off screen on left */
+    transform: translateY(30px);
+  }
+
+  100% {
+    opacity: 1;
+    /* Return to  Original position */
+    transform: translateY(0);
+  }
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+
+  /*  X shadow , Y shadow , Blur , black with .2 opacity*/
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* When button is clicked, it "moves down" from the hover states higher y value */
+/* Its actually -1px from its starting state, but this emulates a push down affect */
+.btn:active {
+  transform: translateY(-1px);
+
+  /* On Click decrease shadow to help the feeling of pressing button ddown */
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-white {
+  background-color: #fff;
+  color: #777;
+  display: inline-block;
+}
+
+/* Places an element directly after, for example <a href=#> wqefw (:after element is here)  </a>  */
+/* Position absolute to our btn:link :visited .   */
+.btn:after {
+  /* Content is whatver would be inside element*/
+  content: "";
+  display: inline-block;
+
+  /* Make it same size as btn*/
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+
+  /* Place it behind button and under button */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+
+  /* TO SEE THE AFTER ELEMENT, REMOVE -1 INDEX AND CHANGE BGC (Must also comment out from btn white:after class*/
+  /* background-color: white; */
+  /* background-color: wheat; */
+
+  /* opacity: 1; */
+
+  transition: all 0.4s;
+}
+
+/* TODO marcos : PLease explain why this overwrites previous after, instead of being a new one 
+                 Is it because an element will only have one even if multiple classes give it one?
+*/
+.btn-white:after {
+  background-color: #fff;
+  /* background-color: wheat; */
+}
+
+/* On hover the button in the back will grow and fade */
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.btn-animated {
+
+  /* animation: moveInnBottom .5s ease-out .75s; */
+
+  animation-name: moveInBottom;
+  animation-duration: .7s;
+  animation-timing-function: ease-out;
+
+  /* So that button will start with animation instead of render and then animate */
+  animation-fill-mode: backwards;
+
 }
