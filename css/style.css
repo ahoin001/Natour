@@ -11,10 +11,14 @@ Dark green: #28b485
                         Utility
 **********************************************************/
 /* CSS RESET */
-* {
+*,
+*::after,
+*::before {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+
+  /* All elements will inherit box sizing from html selector below */
+  box-sizing: inherit;
 }
 
 /* Root font size should be set in html */
@@ -28,6 +32,8 @@ html{
         Now if user changes browser font size, our sizes can react from the new browser font size
     */
     font-size: 62.5%;
+
+    box-sizing: border-box;
 }
 
 body {
@@ -70,18 +76,18 @@ body {
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
 }
 
-.logo-box {
+.header__logo-box {
   position: absolute;
   top: 4rem;
   left: 4rem;
 }
 
-.logo {
+.header__logo {
   /* TODO Setting width or height alone, the browser will figure out the other */
   height: 3.5rem;
 }
 
-.text-box {
+.header__text-box {
   position: absolute;
   top: 40%;
   left: 50%;
@@ -101,7 +107,7 @@ body {
   backface-visibility: hidden;
 }
 
-.heading-primary-main {
+.heading-primary--main {
   display: block;
   font-size: 6rem;
   font-weight: 400;
@@ -112,7 +118,7 @@ body {
   animation-timing-function: ease-out;
 }
 
-.heading-primary-secondary {
+.heading-primary--sub {
   display: block;
   font-size: 2rem;
   font-weight: 700;
@@ -213,7 +219,7 @@ body {
   box-shadow: 0px .5rem 1rem rgba(0, 0, 0, 0.2);
 }
 
-.btn-white {
+.btn--white {
   background-color: #fff;
   color: #777;
   display: inline-block;
@@ -249,7 +255,7 @@ body {
 /* TODO marcos : PLease explain why this overwrites previous after, instead of being a new one 
                  Is it because an element will only have one even if multiple classes give it one?
 */
-.btn-white:after {
+.btn--white:after {
   background-color: #fff;
   /* background-color: wheat; */
 }
