@@ -1,5 +1,8 @@
 /**********************************************************
-                        Variables
+                        COLORS
+**********************************************************/
+/**********************************************************
+                        GRID
 **********************************************************/
 /* CSS RESET */
 *,
@@ -14,9 +17,11 @@
 html {
   /* 10, so that it will be easier to calculate rem throught css */
   /* font-size: 10px; */
-  /* If we base our sizes off 10px, and want user to be able to adjust the font in browser settings
+  /* 
+        If we want our sizes to be based off 10px, and want user to be able to adjust the font in browser settings
         we do the size we want (10px) divided by browser default of 16(in this case), which is 62.5% .
-        Now if user changes browser font size, our sizes can react from the new browser font size
+        Now if user changes browser font size, our sizes can react from the new browser font size wherever we use rem
+        Since rem will reflect 
     */
   font-size: 62.5%; }
 
@@ -60,6 +65,12 @@ body {
     /* Return to  Original position */
     transform: translateY(0); } }
 
+/* 
+
+        Because of font size in root being 62.5%, 
+        1rem = 10px. So 14px = 1.4rem etc
+
+*/
 .heading-primary {
   color: #fff;
   text-transform: uppercase;
@@ -187,3 +198,10 @@ body {
     /* TODO To Move element, position absolute moves left of div to postion, we move another half to finish centering */
     transform: translate(-50%, -50%);
     text-align: center; }
+
+.row {
+  max-width: 114rem;
+  background-color: #eee;
+  margin: 0 auto; }
+  .row:not(:last-child) {
+    margin-bottom: 8rem; }
